@@ -22,24 +22,19 @@ public class GoodsService{
 			 
 		};
    */
-   public void init(String [][] data){
-	 for(int i=0; i<data.length; i++) {
-		 goodsArr[count++] = create(data[i]);
-	 }
-	   
 
-   }//메소드끝
+   public GoodsService (String [][] data) {
+	   for(int i=0; i<data.length; i++) {
+			 goodsArr[count++] = create(data[i]);
+		 }
+   }
 
 
    /**
       Goods를 생성해서 값을 설정하고 생성된 Goos를 리턴하는 메소드 
    */
    private Goods create(String [] row){//{"A01" , "새우깡" , "2500" , "짜고 맛나다."}
-         Goods g = new Goods();    
-         g.setCode(row[0]);
-         g.setExplain(row[3]);
-         g.setName(row[1]);
-         g.setPrice(Integer.parseInt(row[2]));
+         Goods g = new Goods(row[0], row[3], row[1], Integer.parseInt(row[2]));    
          return g;
    }
 

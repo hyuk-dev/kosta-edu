@@ -1,4 +1,4 @@
-package personal_study;
+package personal_study.objs;
 
 public class Animal {
 }

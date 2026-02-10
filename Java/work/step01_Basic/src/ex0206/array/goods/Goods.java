@@ -25,19 +25,17 @@ public class Goods{
 		return this.explain;
 	}
 	
-	public void setCode(String code) {
+	public Goods (String code, String name, String explain) {
 		this.code = code;
-	}
-	
-	public void setName(String name) {
 		this.name = name;
+		this.explain = explain;
 	}
 	
-	public void setPrice(int price) {
+	public Goods (String code, String explain, String name, int price) {
+		this.code = code;
+		this.name = name;
+		this.explain = explain;
 		this.price = price;
 	}
 	
-	public void setExplain(String explain) {
-		this.explain = explain;
-	}
 }
