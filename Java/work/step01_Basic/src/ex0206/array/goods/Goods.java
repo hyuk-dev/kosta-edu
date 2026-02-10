@@ -25,10 +25,10 @@ public class Goods{
 		return this.explain;
 	}
 	
-	public Goods (String code, String name, String explain) {
+	public Goods (String code, String explain, int price) {
 		this.code = code;
-		this.name = name;
 		this.explain = explain;
+		this.price = price;
 	}
 	
 	public Goods (String code, String explain, String name, int price) {
@@ -36,6 +36,14 @@ public class Goods{
 		this.name = name;
 		this.explain = explain;
 		this.price = price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public void setExplain(String explain){
+		this.explain = explain;
 	}
 	
 }
