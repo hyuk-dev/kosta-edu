@@ -1,4 +1,4 @@
-package ex0206.array.goods;
+package ex0211.enum_test.goods;
 import java.util.Scanner;
 /**
  키보드 입력을 받아 각 기능을 호출해줄 View
@@ -78,14 +78,20 @@ public class MenuView{
 //       goods.setPrice(price);
        
 
-	   int result = service.insert(goods);
+	   InsertResult result = service.insert(goods);
 
-	   if(result==-1)
-		  EndView.printMessage("더이상 등록할 수 없습니다.");
-	   else if(result==0)
-		  EndView.printMessage(code+"는 중복이므로 등록할수 없습니다.");
-	   else 
-           EndView.printMessage("상품이 등록되었습니다.");
+//	   if(result==InsertResult.INSERT_OUTOFINDEX)
+//		  EndView.printMessage("더이상 등록할 수 없습니다.");
+//	   else if(result==InsertResult.INSERT_DUPLICATE)
+//		  EndView.printMessage(code+"는 중복이므로 등록할수 없습니다.");
+//	   else 
+//           EndView.printMessage("상품이 등록되었습니다.");
+	   
+	   switch(result) {
+	   case InsertResult.INSERT_OUTOFINDEX: EndView.printMessage("더이상 등록할 수 없습니다.");
+	   case InsertResult.INSERT_DUPLICATE: EndView.printMessage(code+"는 중복이므로 등록할수 없습니다.");
+	   default: EndView.printMessage("상품이 등록되었습니다.");
+	   }
   }
 
   /**
