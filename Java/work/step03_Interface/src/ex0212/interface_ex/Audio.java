@@ -16,7 +16,7 @@ public class Audio extends Elec implements ElecFunction {
 		this.volumn = volumn;
 	}
 	
-	@Override
+	@Override // @Override 어노테이션은 오버라이딩이라는 걸 jvm이 더 빨리 이해할 수 있도록 돕는다.
 	public void start() {
 		System.out.println(getCode()+"의 Audio를 "+volumn+"으로 듣는다.");
 	}

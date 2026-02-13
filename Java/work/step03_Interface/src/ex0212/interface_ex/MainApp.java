@@ -9,7 +9,6 @@ public class MainApp {
 		elec[0] = new Tv("A01", 500000, 12);
 		elec[1] = new Tv("A02", 2500, 20);
 		elec[2] = new Tv("A03", 3000, 30);
-
 		elec[3] = new Audio("A04", 8500, 200);
 		elec[4] = new Audio("A05", 700, 100);
 

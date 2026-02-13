@@ -14,14 +14,17 @@ public class Tv extends Elec implements ElecFunction {
 		this.chnnel = chnnel;
 	}
 	
+	@Override
 	public void start() {
 		System.out.println(getCode()+"제품 TV를 "+chnnel+"을 본다");
 	}
 	
+	@Override
 	public void stop() {
 		System.out.println(getCode()+"제품 TV를 "+chnnel+"을 끈다");
 	}
 	
+	@Override
 	public void display() {
 		System.out.println(toString());
 	}
@@ -35,9 +38,5 @@ public class Tv extends Elec implements ElecFunction {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
 	
 }
