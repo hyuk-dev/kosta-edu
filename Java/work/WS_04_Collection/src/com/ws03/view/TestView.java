@@ -10,7 +10,7 @@ public class TestView {
 		System.out.println("***1. 고객 seq 100 에 해당하는 계좌정보 검색하기 *****");
 		BankService service = new BankService();
 		
-        AccountDto[] accountList = service.getAccountList(400);
+        AccountDto[] accountList = service.getAccountList(100);
 		
 		if(accountList==null) {
 			System.out.println("회원의 계좌정보가 없습니다. ");
@@ -23,9 +23,9 @@ public class TestView {
 			}
 		}
 		
-		
+
 		System.out.println("\n\n***2. userSeq에  해당하는 고객의 정보 *************");
-		UserDto userDto = service.getUserDetail(800);//300 userSeq
+		UserDto userDto = service.getUserDetail(100);//300 userSeq
 		if(userDto!= null) {
 		  System.out.print(userDto.getUserSeq() +" , " + userDto.getName()+" , " + 
 		            userDto.getEmail()+" , ");
@@ -35,7 +35,8 @@ public class TestView {
 			System.out.println("회원의 정보가 없습니다.");
 		}
 
-
+		
+		
 	}//메인끝
 
 }// 클래스 끝

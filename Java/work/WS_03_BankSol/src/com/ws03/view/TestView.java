@@ -10,7 +10,7 @@ public class TestView {
 		System.out.println("***1. 고객 seq 100 에 해당하는 계좌정보 검색하기 *****");
 		BankService service = new BankService();
 		
-        AccountDto[] accountList = service.getAccountList(400);
+        AccountDto[] accountList = service.getAccountList(100);
 		
 		if(accountList==null) {
 			System.out.println("회원의 계좌정보가 없습니다. ");

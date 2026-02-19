@@ -57,6 +57,7 @@ public class BankService {
 		
 		 //리턴해서 나갈 배열의 개수를 미리 알아내여 선언하기 위해 반복문필요 
 		 for(int i=0; i < ACCOUNT_CURRENT_SIZE ; i++) {
+			 System.out.println(accountList[i].getUserSeq() + " " + userSeq);
 				if( accountList[i].getUserSeq()  == userSeq) {
 					 //찾았다!!
 					searchAccountCount++;
