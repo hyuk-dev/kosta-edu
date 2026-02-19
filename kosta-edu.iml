@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Java/work/step01_Basic/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Java/work/step03_Interface/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Java/work/WS_07_exception/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

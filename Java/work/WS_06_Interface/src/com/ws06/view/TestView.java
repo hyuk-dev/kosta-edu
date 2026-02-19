@@ -3,6 +3,7 @@ package com.ws06.view;
 import com.ws06.dto.AccountDto;
 import com.ws06.dto.UserDto;
 import com.ws06.service.BankService;
+import com.ws06.service.BankServiceImpl;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class TestView {
 
 	public static void main(String[] args) {
 		System.out.println("***1. 고객 seq 100 에 해당하는 계좌정보 검색하기 *****");
-		BankService service = new BankService();
+		BankService service = new BankServiceImpl();
 		
         List<AccountDto> accountList = service.getAccountList(100);
 		

@@ -1,11 +1,11 @@
-package com.ws03.service;
+package com.ws06.service;
 /**
  * 고객과 계좌에 관련된 서비스
  * (Business Logic 을 처리하는 객체)
  * */
 
-import com.ws03.dto.AccountDto;
-import com.ws03.dto.UserDto;
+import com.ws06.dto.AccountDto;
+import com.ws06.dto.UserDto;
 
 public class BankService {
 	//final은 고정값= 값변경불가 (반드시 초기화 필수)
