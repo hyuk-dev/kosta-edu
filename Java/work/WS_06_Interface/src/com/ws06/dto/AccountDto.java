@@ -52,7 +52,7 @@ public class AccountDto implements Comparable<AccountDto> {
 
 	@Override
 	public int compareTo(AccountDto o) {
-		return this.getBalance() - o.getBalance();
+		return getBalance() - o.getBalance();
 	}
 
 	@Override

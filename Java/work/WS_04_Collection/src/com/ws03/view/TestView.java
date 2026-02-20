@@ -1,8 +1,8 @@
-package com.ws06.view;
+package com.ws03.view;
 
-import com.ws06.dto.AccountDto;
-import com.ws06.dto.UserDto;
-import com.ws06.service.BankService;
+import com.ws03.dto.AccountDto;
+import com.ws03.dto.UserDto;
+import com.ws03.service.BankService;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class TestView {
 		
         List<AccountDto> accountList = service.getAccountList(100);
 		
-		if(accountList==null) {
+		if(accountList.size() == 0) { // 리스트는 생성 이후 [] 빈 배열로 초기화 되기 때문에 null이 올 수 없다.
 			System.out.println("회원의 계좌정보가 없습니다. ");
 		}else {
 			System.out.println("회원계좌개수 : " + accountList.size());

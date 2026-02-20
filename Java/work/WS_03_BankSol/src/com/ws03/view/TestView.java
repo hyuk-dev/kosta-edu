@@ -1,8 +1,8 @@
-package com.ws06.view;
+package com.ws03.view;
 
-import com.ws06.dto.AccountDto;
-import com.ws06.dto.UserDto;
-import com.ws06.service.BankService;
+import com.ws03.dto.AccountDto;
+import com.ws03.dto.UserDto;
+import com.ws03.service.BankService;
 
 public class TestView {
 

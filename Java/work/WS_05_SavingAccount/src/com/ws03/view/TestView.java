@@ -1,4 +1,4 @@
-package com.ws06.view;
+package com.ws03.view;
 
 import com.ws06.dto.AccountDto;
 import com.ws06.dto.UserDto;
@@ -14,7 +14,7 @@ public class TestView {
 		
         List<AccountDto> accountList = service.getAccountList(100);
 		
-		if(accountList==null) {
+		if(accountList.size() == 0) {
 			System.out.println("회원의 계좌정보가 없습니다. ");
 		}else {
 			System.out.println("회원계좌개수 : " + accountList.size());

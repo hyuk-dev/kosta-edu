@@ -1,8 +1,8 @@
-package com.ws06.view;
+
 import java.util.List;
 
-import com.ws06.dto.AccountDto;
-import com.ws06.service.BankService;
+import src.com.ws03.dto.AccountDto;
+import src.com.ws03.service.BankService;
 
 public class TestView02 {
 	public static void main(String[] args) {

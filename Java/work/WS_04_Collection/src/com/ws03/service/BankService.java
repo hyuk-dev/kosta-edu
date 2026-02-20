@@ -1,17 +1,17 @@
-package com.ws06.service;
+package com.ws03.service;
 /**
  * 고객과 계좌에 관련된 서비스
  * (Business Logic 을 처리하는 객체)
  * */
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import assignment0210.Account;
-import com.ws06.dto.AccountDto;
-import com.ws06.dto.UserDto;
+import com.ws03.dto.AccountDto;
+import com.ws03.dto.UserDto;
 
 public class BankService {
 	//final은 고정값= 값변경불가 (반드시 초기화 필수)
@@ -67,47 +67,28 @@ public class BankService {
 	}
 
 	/**
-	 * 사용자 일련번호로 정렬 후 전체 조회
+	 * 사용자 일련번호로 정렬 후 전체 조회 (일련번호 같으면 잔액 기준 내림차순)
 	 */
 	public List<AccountDto> getAccountListSortByUserSeq() {
-		List<AccountDto> pastedAccountList = accountList;
-		Collections.sort(pastedAccountList, new UserSeqSort());
-		return pastedAccountList;
+		List<AccountDto> shallowCopyList = new ArrayList<AccountDto>(accountList);
+		Collections.sort(shallowCopyList, (a, b) -> 
+		a.getUserSeq() == b.getUserSeq() ?
+				b.getBalance() - a.getBalance() : a.getUserSeq() - b.getUserSeq()
+				);
+		return shallowCopyList;
 	}
 
     /**
 	  특정 사용자의 계좌 목록을 배열로 리턴 하는 메소드를 작성한다
 	*/
 	public List<AccountDto> getAccountList(int userSeq) { // 100 
-//		 int searchAccountCount=0; //인수로 전달된 userSeq에 해당하는 계좌의 개수를 체크
-//		System.out.println(accountList.get(1).getUserSeq());
-//		 //리턴해서 나갈 배열의 개수를 미리 알아내여 선언하기 위해 반복문필요
-//		 for(int i=0; i < ACCOUNT_CURRENT_SIZE ; i++) {
-//				if( accountList.get(i).getUserSeq()  == userSeq) {
-//					 //찾았다!!
-//					searchAccountCount++;
-//				}
-//		}
+
 			List<AccountDto> foundAccountList = new ArrayList<>();
 			for(AccountDto ad : accountList) {
 				if(ad.getUserSeq() == userSeq) {
 					foundAccountList.add(ad);
 				}
 			}
-			//위에서 찾은 정보를 바탕으로  AccountDto배열에서 계좌정보를 찾아서  리턴해준다.
-			//찾은 고객의 계좌의 수만큼 배열을 생성해서 그 배열을 리턴
-//			if(searchAccountCount==0)
-//				return null;
-//
-//			AccountDto [] searchAccountDtoList =  new AccountDto [searchAccountCount];
-//
-//			int count=0;
-//			for(int i=0; i < ACCOUNT_CURRENT_SIZE ; i++) {
-//				if( accountList.get(i).getUserSeq()  == userSeq) {
-//					searchAccountDtoList[count++] =  accountList.get(i);
-//				}
-//			}
-
 			
 			return foundAccountList;
 	}
@@ -120,13 +101,7 @@ public class BankService {
 	   @return : null이면 고객의정보없다 
 	**/
 	public UserDto getUserDetail(int userSeq) {
-//		for(int i=0; i< USER_CURRENT_SIZE ; i++) {
-//			System.out.println(userSeq);
-//			if(userList.get(i).getUserSeq() == userSeq) {
-//				//찾았다.
-//				return userList.get(i);
-//			}
-//		}
+
 		for(UserDto ud : userList) {
 			if(ud.getUserSeq() == userSeq) {
 				return ud;

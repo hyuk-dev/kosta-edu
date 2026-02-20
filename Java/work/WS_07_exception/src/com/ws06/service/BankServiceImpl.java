@@ -104,17 +104,15 @@ public class BankServiceImpl implements BankService {
 	@Override
 	public int withdraw(int userSeq, int accountSeq, int amount) throws BalanceLackException, UserAccountNotFoundException {
 
-		for(AccountDto ad : accountList) {
-			if(ad.getUserSeq() == userSeq && ad.getAccountSeq() == accountSeq) {
+		AccountDto foundAccount = this.getUserAccount(userSeq, accountSeq);
 
-				if(ad.getBalance() < amount) {
-					throw new BalanceLackException("잔액이 부족합니다.");
-				}
-				ad.setBalance(ad.getBalance() - amount);
-				return ad.getBalance();
-			}
+		if(foundAccount.getBalance() < amount) {
+			throw new BalanceLackException("잔액이 부족합니다.");
 		}
-		throw new UserAccountNotFoundException("사용자를 찾을 수 없습니다.");
+		
+		foundAccount.setBalance(foundAccount.getBalance() - amount);
+		return foundAccount.getBalance();
+
 
 	}
 

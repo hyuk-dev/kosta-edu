@@ -11,6 +11,7 @@ public class InstallAccountDto extends AccountDto {
     }
 
     public InstallAccountDto() {
+    	
     }
 
     public int getPeriod() {
