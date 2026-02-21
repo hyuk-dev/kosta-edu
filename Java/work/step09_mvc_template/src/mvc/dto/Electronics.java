@@ -3,7 +3,7 @@ package mvc.dto;
  * 전자제품의 속성을 관리하는 객체 
  */
 
-public class Electronics {
+public class Electronics implements Comparable<Electronics> {
     private int modelNo;
     private String modelName;
     private int modelPrice;
@@ -75,6 +75,11 @@ public class Electronics {
 		builder.append(modelDetail);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	@Override
+	public int compareTo(Electronics o) {
+		return modelPrice - o.modelPrice;
 	}
 
     

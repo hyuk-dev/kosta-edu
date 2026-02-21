@@ -3,8 +3,10 @@ package mvc.controller;
 import java.util.List;
 
 import mvc.dto.Electronics;
+import mvc.exception.SearchNotFoundException;
 import mvc.service.ElectronicsService;
 import mvc.service.ElectronicsServiceImpl;
+import mvc.view.FailView;
 import mvc.view.SuccessView;
 
 
@@ -34,7 +36,12 @@ public class ElectronicsController {
      */
    
     public void insert(Electronics electronics) {
-       
+    	try {
+    	       service.insert(electronics);	
+    	       SuccessView.printMessage("등록 성공!");
+    	} catch (Exception e) {
+    		FailView.errorMessage(e.getMessage());
+    	}
     }
     
     
@@ -44,7 +51,12 @@ public class ElectronicsController {
      * @param modelNo
      */
     public void searchByModelNo(int modelNo) {
-    	
+    	try {
+        	Electronics electronics = service.searchByModelNo(modelNo);	
+        	SuccessView.printSearchByModelNo(electronics);
+    	} catch (SearchNotFoundException e) {
+    		FailView.errorMessage(e.getMessage());
+    	}
     } 
 
     /**
@@ -52,7 +64,12 @@ public class ElectronicsController {
      * @param electronics
      */
     public void update(Electronics electronics) {
-    	
+    	try {
+    		service.update(electronics);
+    		SuccessView.printMessage("수정 성공!");
+    	} catch(SearchNotFoundException e) {
+    		FailView.errorMessage(e.getMessage());
+    	}
     }
     
     /**
@@ -60,7 +77,12 @@ public class ElectronicsController {
      * @param electronics
      */
 	public void deleteModelNo(int modelNo) {
-		
+		try {
+			service.delete(modelNo);
+			SuccessView.printMessage("삭제 완료!");
+		} catch(SearchNotFoundException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 	}
 	
 	/**
@@ -69,9 +91,29 @@ public class ElectronicsController {
      * @return
      */
     public void selectSortByPrice() {
-    	
+    	SuccessView.printAll(service.selectSortByPrice());
     }
     
+    /**
+     * 모델번호 기준으로 역순 정렬
+     */
+    public void selectSortByReverseModelNo() {
+    	SuccessView.printAll(service.selectSortByReverseModelNo());
+    }
+    
+    /**
+     *모델 이름 기준으로 정렬 
+     */
+    public void selectSortByModelName() {
+    	SuccessView.printAll(service.selectSortByModelName());
+    }
+    
+    /**
+     * 로또 번호 추출 
+     */
+    public void getLottoNums() {
+    	SuccessView.printSet(service.getLottoNums());
+    }
 }
 
 

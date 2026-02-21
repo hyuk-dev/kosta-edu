@@ -1,9 +1,13 @@
 package mvc.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
 
+import mvc.comparator.ModelNameComparator;
 import mvc.dto.Electronics;
 import mvc.exception.DuplicateModelNoException;
 import mvc.exception.ElectronicsArrayBoundsException;
@@ -16,8 +20,9 @@ import mvc.exception.SearchNotFoundException;
 public class ElectronicsServiceImpl implements ElectronicsService {
 	
 	private static ElectronicsService instance = new ElectronicsServiceImpl(); 
-    private static final int MAX_SIZE=10;
+    private static final int MAX_SIZE=6;
     List<Electronics> list = new ArrayList<Electronics>();
+    Set<Integer> set = new TreeSet<>((a, b) -> b - a);
     
     
     /** 
@@ -50,37 +55,105 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	@Override
 	public void insert(Electronics electronics) 
 			  throws ElectronicsArrayBoundsException, DuplicateModelNoException {
+		if(list.size() >= MAX_SIZE) {
+			throw new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록할 수 없습니다.");
+		}
+		
+		boolean duplicated = false;
+		// 기존 searchByModelNo 활용하려고 했더니 예외처리가 어려움 
+		for(Electronics e : list) {
+			if(e.getModelNo() == electronics.getModelNo()) {
+				duplicated = true;
+			}
+		}
+		
+		if(duplicated) {
+			throw new DuplicateModelNoException("중복된 전자제품입니다.");
+		}
+		list.add(electronics);
 		
 	}
 
 	@Override
 	public List<Electronics> selectAll() {
-		// TODO Auto-generated method stub
 		return list;
 	}
 
 	@Override
 	public Electronics searchByModelNo(int modelNo) throws SearchNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		for(Electronics e : list) {
+			if(e.getModelNo() == modelNo) {
+				return e;
+			}
+		}
+		// TODO 예외 던져야함
+		throw new SearchNotFoundException("해당 모델을 찾을 수 없습니다.");
 	}
 
 	@Override
 	public void update(Electronics electronics) throws SearchNotFoundException {
-		// TODO Auto-generated method stub
+		// 찾는다
+		for(Electronics e : list) {
+			if(e.getModelNo() == electronics.getModelNo()) {
+				// 업데이트 한다
+				e.setModelDetail(electronics.getModelDetail());
+				return;
+			}
+		}
+		
+		// 없다면 에러 던진다.
+		throw new SearchNotFoundException("해당 모델을 찾을 수 없습니다.");
+		
 		
 	}
 
 	@Override
 	public void delete(int modelNo) throws SearchNotFoundException {
-		// TODO Auto-generated method stub
+		// 찾는다
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getModelNo() == modelNo) {
+				// 삭제한다
+				list.remove(i);
+				return;
+			}
+		}
+		throw new SearchNotFoundException("해당 모델을 찾을 수 없습니다.");
 		
 	}
 
 	@Override
 	public List<Electronics> selectSortByPrice() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Electronics> shallowList = new ArrayList<>(list);
+		Collections.sort(shallowList);
+		return shallowList;
 	}
+
+	@Override
+	public List<Electronics> selectSortByReverseModelNo() {
+		List<Electronics> shallowList = new ArrayList<>(list);
+		Collections.sort(shallowList, (a, b) -> b.getModelNo() - a.getModelNo());
+		return shallowList;
+	}
+
+	@Override
+	public List<Electronics> selectSortByModelName() {
+		List<Electronics> shallowList = new ArrayList<>(list);
+		Collections.sort(shallowList, new ModelNameComparator());
+		return shallowList;
+	}
+
+	@Override
+	public Set<Integer> getLottoNums() {
+		set.clear(); // 한 번 초기화.
+		while(set.size() < 6) {
+			set.add((int)(Math.random()*45)+1);
+		}
+		return set;
+	}
+	
+	
+	
+	
     
 } // 클래스 끝 
+

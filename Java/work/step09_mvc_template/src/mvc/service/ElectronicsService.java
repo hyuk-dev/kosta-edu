@@ -1,6 +1,7 @@
 package mvc.service;
 
 import java.util.List;
+import java.util.Set;
 
 import mvc.dto.Electronics;
 import mvc.exception.DuplicateModelNoException;
@@ -69,7 +70,22 @@ public interface ElectronicsService {
      * @return
      */
     public List<Electronics> selectSortByPrice() ;
+    
+    /**
+     *  Reverse sort by modelNo.
+     */
+    public List<Electronics> selectSortByReverseModelNo() ;
+    
+    /**
+     *  Sort by ModelName
+     */
+    public List<Electronics> selectSortByModelName() ;
 
+    
+    /**
+     * Generate Lotto Numbers and Return
+     */
+    public Set<Integer> getLottoNums();
 }
 
 

@@ -1,6 +1,7 @@
 package mvc.view;
 
 import java.util.List;
+import java.util.Set;
 
 import mvc.dto.Electronics;
 
@@ -9,6 +10,13 @@ import mvc.dto.Electronics;
  */
 
 public class SuccessView {
+	
+	/**
+	 * 전달된 Set을 출력 
+	 */
+	public static void printSet(Set<Integer> set) {
+		System.out.println(set);
+	}
 
     /**
      * 전달된 배열을 출력(전체 검색 결과)

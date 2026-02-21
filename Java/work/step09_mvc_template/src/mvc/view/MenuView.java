@@ -18,9 +18,9 @@ public class MenuView{
 	public void printMenu(){
         
 		 while(true){
-	           System.out.println("----------------------------------------------------------------------------------");
-	           System.out.println("1. 전체검색    2. 모델번호검색     3.등록     4. 수정   5. 삭제   6.가격기준정렬  9. 종료");
-			   System.out.println("----------------------------------------------------------------------------------");
+	           System.out.println("--------------------------------------------------------------------------------------------------------------");
+	           System.out.println("1. 전체검색  2. 모델번호검색  3.등록  4. 수정   5. 삭제   6.가격기준정렬  7.모델번호역순정렬   8.모델이름정렬  9. 로또번호추출  10.종료");
+			   System.out.println("--------------------------------------------------------------------------------------------------------------");
 			   System.out.print("메뉴선택 > ");
 
 			   String  menu = sc.nextLine();
@@ -39,10 +39,20 @@ public class MenuView{
 				   break;
 				   case "5" : 
 		                 this.inputDelete();
+		                 break;
 				   case "6" : 
 					   controller.selectSortByPrice();
 					   break;
-				   case "9" : 
+				   case "7" :
+					   controller.selectSortByReverseModelNo();
+					   break;
+				   case "8" :
+					   controller.selectSortByModelName();
+					   break;
+				   case "9" :
+					  controller.getLottoNums();
+					  	break;
+				   case "10" : 
 	                 System.exit(0);
 				   default:
 					   System.out.println("메뉴를 다시 선택해주세요!!!!");
